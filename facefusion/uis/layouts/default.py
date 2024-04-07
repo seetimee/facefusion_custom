@@ -13,11 +13,11 @@ def pre_render() -> bool:
 
 
 def render() -> gradio.Blocks:
-	with gradio.Blocks() as layout:
+	with gradio.Blocks(title='换脸') as layout:
 		with gradio.Row():
 			with gradio.Column(scale = 2):
-				with gradio.Blocks():
-					about.render()
+				# with gradio.Blocks():
+				# 	about.render()
 				with gradio.Blocks():
 					frame_processors.render()
 				with gradio.Blocks():
@@ -77,4 +77,4 @@ def listen() -> None:
 
 def run(ui : gradio.Blocks) -> None:
 	concurrency_count = min(8, multiprocessing.cpu_count())
-	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = True)
+	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = False,share=True,server_name='0.0.0.0',server_port=8672)

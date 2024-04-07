@@ -1,3 +1,7 @@
 .assets
 .idea
 .vscode
+*.log
+output/
+__pycache__/
+
