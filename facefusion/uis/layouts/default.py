@@ -77,4 +77,6 @@ def listen() -> None:
 
 def run(ui : gradio.Blocks) -> None:
 	concurrency_count = min(8, multiprocessing.cpu_count())
-	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = False,share=True,server_name='0.0.0.0',server_port=8672)
+	if not os.path.exists('./video_input'):
+		os.makedirs('./video_input')
+	ui.queue(concurrency_count = concurrency_count).launch(output_dir='./video_input',show_api = False, quiet = False,share=True,server_name='0.0.0.0',server_port=8672)
