@@ -80,4 +80,6 @@ def run(ui : gradio.Blocks) -> None:
 	import os
 	if not os.path.exists('./video_input'):
 		os.makedirs('./video_input')
-	ui.queue(concurrency_count = concurrency_count).launch(output_dir='./video_input',show_api = False, quiet = False,share=True,server_name='0.0.0.0',server_port=8672)
+	os.environ['GRADIO_TEMP_DIR'] = './video_input'
+	#output_dir='./video_input',
+	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = False,share=True,server_name='0.0.0.0',server_port=8672)
